@@ -59,7 +59,7 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours*60*60 + minutes*60 +seconds
 
 /**
  * Тривиальная
@@ -76,7 +76,9 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
+fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
+    return deg * (PI/180) + min * (PI/(180*60)) + sec * (PI/(180*60*60))
+}
 
 /**
  * Тривиальная
@@ -129,4 +131,20 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
  * Пользователь задает целое трехзначное число (например, 478).
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
-fun numberRevert(number: Int): Int = TODO()
+fun numberRevert(number: Int): Int {
+    var d1: Int =number
+    var n2: Int
+    var n3: Int =0
+    do {
+        n2 = d1
+        d1 /= 10
+        d1 *= 10  // d1: xxx->xx0 x->0
+        n2 -= d1  // n2: xxx->00x
+        n3 += n2  // n3: xx0 + x -> xxx
+        if (d1 > 0) {
+            n3 *= 10  // n3: xxx->xxx0
+            d1 /= 10  // d1: xx0->0xx
+        }
+    } while (d1 > 0)
+    return n3
+}
