@@ -135,7 +135,7 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
 fun numberRevert(number: Int): Int {
     var newNumb = 0
     var loDecDig: Int
-    var subNumber: Int = number
+    var subNumber = number
     do {
         loDecDig = subNumber % 10           // xxX->X loDecDig = X
         subNumber /= 10                     // subNumber: xxX->0xx
